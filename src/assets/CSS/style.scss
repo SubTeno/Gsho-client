@@ -1,0 +1,68 @@
+$back-body-color: rgb(255, 255, 255);
+$G-font: "Roboto", sans-serif;
+$invert-color: invert($back-body-color);
+body {
+  background-color: $back-body-color;
+  font-family: $G-font;
+  font-weight: 400;
+  font-size: large;
+  margin: 0;
+  .main {
+    width: 80vw;
+    min-height: 100vh;
+    margin: 0 auto;
+    a {
+      color: rgb(0, 0, 0);
+    }
+    .form {
+      width: 100%;
+      height: 20rem;
+      display: flex;
+      align-items: center;
+      form {
+        width: 50%;
+        input {
+          width: 100%;
+          font-size: xx-large;
+          background-color: transparent;
+          border: 0;
+          border-bottom: 2px solid $invert-color;
+          margin-bottom: 2px;
+          outline: none;
+        }
+      }
+    }
+
+    .results {
+      border-bottom: 2px solid rgb(0, 0, 0);
+      margin: 1rem;
+
+      // kanjis
+      .bartop {
+        font-size: xx-large;
+        display: grid;
+        grid-auto-flow: column;
+        grid-row-gap: 1rem;
+        align-items: self-end;
+        // kanji
+        .baritem {
+          width: fit-content;
+          font-size: xx-large;
+          .reading {
+            font-size: small;
+          }
+        }
+      }
+    }
+    .sense {
+      font-size: x-large;
+      font-style: italic;
+      margin: 1rem;
+    }
+    .gloss {
+      font-weight: 200;
+      font-style: large;
+      font-size: medium;
+    }
+  }
+}
