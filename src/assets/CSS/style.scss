@@ -11,6 +11,7 @@ body {
   .main {
     display: grid;
     justify-items: center;
+    
     @media only screen and (min-width: 600px) {
       width: 88vw;
       margin: 0 auto;
@@ -35,6 +36,9 @@ body {
       align-items: center;
       justify-content: center;
       form {
+        @media only screen and (max-width: 600px) {
+          width: 90%;
+        }
         width: 50%;
         input {
           width: 100%;
