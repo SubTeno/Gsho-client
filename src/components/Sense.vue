@@ -10,10 +10,11 @@ defineProps(["gloss"]);
     {{ gloss.pos }}
     <div class="gloss">
       <Gloss
-        v-for="meaning of gloss.gloss"
+        v-for="(meaning,index) of gloss.gloss"
         :key="gloss.sID"
-        :meaning="meaning"
+        :meaning="gloss.gloss.length != index+1 ? `${meaning.gloss}; ` : meaning.gloss "
       />
+      
     </div>
   </div>
 </template>

@@ -1,6 +1,7 @@
 $back-body-color: rgb(255, 255, 255);
 $G-font: "Roboto", sans-serif;
 $invert-color: invert($back-body-color);
+
 body {
   background-color: $back-body-color;
   font-family: $G-font;
@@ -8,17 +9,31 @@ body {
   font-size: large;
   margin: 0;
   .main {
-    width: 80vw;
+    display: grid;
+    justify-items: center;
+    @media only screen and (min-width: 600px) {
+      width: 88vw;
+      margin: 0 auto;
+    }
+    @media only screen and (min-width: 1440px) {
+      width: 75vw;
+      margin: 0 auto;
+    }
+
     min-height: 100vh;
-    margin: 0 auto;
+
     a {
       color: rgb(0, 0, 0);
+    }
+    .content {
+      width: 100%;
     }
     .form {
       width: 100%;
       height: 20rem;
       display: flex;
       align-items: center;
+      justify-content: center;
       form {
         width: 50%;
         input {
@@ -63,6 +78,10 @@ body {
       font-weight: 200;
       font-style: large;
       font-size: medium;
+    }
+
+    .button {
+      cursor: pointer;
     }
   }
 }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+import MainContent from "./components/MainContent.vue";
 
 </script>
 
 <template>
-  <HelloWorld> </HelloWorld>
+  <MainContent> </MainContent>
 </template>

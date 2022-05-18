@@ -6,8 +6,8 @@ import { computed, ref, watch } from "@vue/runtime-dom";
 import QueryItem from "./QueryItem.vue";
 // QUERY
 var QUERY = gql`
-  query ($query: String, $skip: Int) {
-    entry(query: $query, skip: $skip, limit: 5) {
+  query ($query: String, $skip: Int, $limit: Int) {
+    entry(query: $query, skip: $skip, limit: $limit) {
       seq
       jlpt
       reading {
@@ -41,6 +41,7 @@ var { load, loading, error, result, variables, fetchMore } = useLazyQuery(
   {
     query: "",
     skip: 0,
+    limit: 5,
   }
 );
 
@@ -51,6 +52,7 @@ function makeQuery() {
   variables.value = {
     query: newQuery.value.query,
     skip: 0,
+    limit: 5,
   };
 }
 
@@ -78,9 +80,9 @@ function loadMore() {
     </div>
 
     <!-- IF LOADING -->
-    <div v-if="loading">LOADING</div>
+    <template v-if="loading">LOADING</template>
     <!-- ELSE IF ERROR -->
-    <div v-else-if="error">ERROR : {{ error.message }}</div>
+    <template v-else-if="error">ERROR : {{ error.message }}</template>
     <!-- IF RES != NULL -->
     <template v-else-if="res[0]">
       <div class="content">
@@ -95,8 +97,10 @@ function loadMore() {
     </template>
 
     <!-- Load More Button -->
-    <div v-if="res[0]">
-      <a @click="loadMore"> Load More </a>
+    <div class="button" v-if="res[0]">
+      <template v-if="res.length % 5 === 0"
+        ><a @click="loadMore"> Load More </a></template
+      >
     </div>
     <!--  -->
   </div>

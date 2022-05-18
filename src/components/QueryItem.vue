@@ -31,11 +31,14 @@ filtered_array.forEach((e, i) => {
           "
           :kanji="kan"
         />
-        <Katakana
-          v-for="(read, index) in reading"
-          :key="read.entry"
-          :katakana="read && wanakana.isKatakana(read.elem) ? read : null"
-        />
+        <template v-for="(read, index) in reading">
+          <template v-if="wanakana.isKatakana(read.elem)">
+            <Katakana
+              :katakana="read"
+              :key="read.entry"
+            />
+          </template>
+        </template>
       </template>
       <template v-else>
         <Kanji v-for="read in reading" :key="read.entry" :reading="read" />
