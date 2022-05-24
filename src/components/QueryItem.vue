@@ -4,10 +4,12 @@ import Kanji from "./Kanji.vue";
 import { cloneDeep } from "@apollo/client/utilities/common/cloneDeep";
 import * as wanakana from "wanakana";
 import Katakana from "./Katakana.vue";
+
 const prop = defineProps(["sense", "reading", "kanji"]);
 
 var filtered_array: Array<any> = cloneDeep(prop.sense);
 var words: string[] = [];
+
 filtered_array.forEach((e, i) => {
   if (words.includes(e.pos)) {
     filtered_array.at(i).pos = "";
@@ -15,6 +17,7 @@ filtered_array.forEach((e, i) => {
     words.push(e.pos);
   }
 });
+
 </script>
 
 <template>
@@ -31,7 +34,7 @@ filtered_array.forEach((e, i) => {
           "
           :kanji="kan"
         />
-        <template v-for="(read, index) in reading">
+        <template v-for="(read) in reading">
           <template v-if="wanakana.isKatakana(read.elem)">
             <Katakana
               :katakana="read"

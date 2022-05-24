@@ -2,8 +2,14 @@
 import gql from "graphql-tag";
 import "../assets/CSS/style.scss";
 import { useLazyQuery } from "@vue/apollo-composable";
-import { computed, ref, watch } from "@vue/runtime-dom";
+import { computed, watch } from "@vue/runtime-dom";
 import QueryItem from "./QueryItem.vue";
+import { useRouter, useRoute } from "vue-router";
+
+const res = computed(() => result.value?.entry ?? []);
+const newQuery = "";
+const route = useRoute();
+const router = useRouter();
 // QUERY
 var QUERY = gql`
   query ($query: String, $skip: Int, $limit: Int) {
@@ -32,25 +38,20 @@ var QUERY = gql`
     }
   }
 `;
-const newQuery = ref({
-  query: "",
-});
 
 var { load, loading, error, result, variables, fetchMore } = useLazyQuery(
   QUERY,
-  {
+  { 
     query: "",
     skip: 0,
     limit: 5,
   }
 );
 
-const res = computed(() => result.value?.entry ?? []);
-
 function makeQuery() {
   load();
   variables.value = {
-    query: newQuery.value.query,
+    query: route.params.id as string,
     skip: 0,
     limit: 5,
   };
@@ -68,17 +69,21 @@ function loadMore() {
     },
   });
 }
+
+watch(
+  () => route.params.id,
+  () => makeQuery()
+);
 </script>
 
 <template>
   <div class="main">
     <!-- FORM -->
     <div class="form">
-      <form @submit.prevent="makeQuery">
-        <input v-model="newQuery.query" type="search" placeholder="Search" />
+      <form @submit.prevent="router.push(newQuery)">
+        <input v-model="newQuery" type="search" placeholder="Search" />
       </form>
     </div>
-
     <!-- IF LOADING -->
     <template v-if="loading">LOADING</template>
     <!-- ELSE IF ERROR -->
