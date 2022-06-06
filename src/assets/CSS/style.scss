@@ -11,17 +11,19 @@ body {
   .main {
     display: grid;
     justify-items: center;
-    
+    min-height: 100vh;
+
     @media only screen and (min-width: 600px) {
       width: 88vw;
       margin: 0 auto;
     }
     @media only screen and (min-width: 1440px) {
+      border-left: 2px solid $invert-color;
+      border-right: 2px solid $invert-color;
       width: 75vw;
       margin: 0 auto;
+      padding: 0 5rem 0 5rem;
     }
-
-    min-height: 100vh;
 
     a {
       color: rgb(0, 0, 0);
@@ -53,7 +55,7 @@ body {
     }
 
     .results {
-      border-bottom: 2px solid rgb(0, 0, 0);
+      border-bottom: 2px solid $invert-color;
       margin: 1rem;
 
       // kanjis
@@ -85,7 +87,11 @@ body {
     }
 
     .button {
+      margin: 5rem;
       cursor: pointer;
+      &:hover {
+        border-bottom: 2px solid $invert-color;
+      }
     }
   }
 }
