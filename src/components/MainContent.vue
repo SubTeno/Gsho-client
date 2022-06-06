@@ -5,9 +5,10 @@ import { useLazyQuery } from "@vue/apollo-composable";
 import { computed, watch } from "@vue/runtime-dom";
 import QueryItem from "./QueryItem.vue";
 import { useRouter, useRoute } from "vue-router";
+import { ref } from "vue";
 
 const res = computed(() => result.value?.entry ?? []);
-const newQuery = "";
+const newQuery = ref("");
 const route = useRoute();
 const router = useRouter();
 // QUERY
